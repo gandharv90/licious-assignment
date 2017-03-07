@@ -8,8 +8,18 @@
   },
   "dependencies" : {
     "express" : "*",
+    "express-messages" : "*",
+    "express-session" : "*",
+    "express-validator" : "*",
     "body-parser" : "*",
-    "mongoose" : "*"
+    "mongodb" : "*",
+    "mongoose" : "*",
+    "bcryptjs" : "*",
+    "connect-flash" : "*",
+    "cookie-parser" : "^1.4.1",
+    "passport" : "*",
+    "passport-http" : "*",
+    "passport-local" : "*"
   },
   "author": "Gandharv90@gmail.com",
   "license": "ISC"

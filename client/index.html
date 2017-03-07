@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Sample Ecom</title>
+    <link rel="stylesheet" href="css/z_custom.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.css">
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.js"></script>
+    <script src="/app.js"></script>
+    <script src="/controllers/orders.js"></script>
+    <script src="/controllers/products.js"></script>
+    <script src="/controllers/cart.js"></script>
+  </head>
+  <body ng-app = "myApp">
+    <div class="ui segment" style="margin : 30px">
+      <div class="ui secondary  menu">
+        <a class="active item">
+          Home
+        </a>
+        <div class="right menu">
+          <a class="ui item" href = "/shopping-cart">
+            Cart
+          </a>
+          <a class="ui item">
+            Logout
+          </a>
+        </div>
+      </div>
+    </div>
+
+<div ng-view></div>
+
+  </body>
+</html>
