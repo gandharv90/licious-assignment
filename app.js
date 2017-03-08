@@ -134,13 +134,14 @@ app.put('/apis/addToCart', function(req,res){
       console.log(true);
       updatedCart = currentCart.cartItems.map(function(x){
         if(x.productId == productId){
-          return {
-            productId : x.productId,
-            qty : x.qty + 1
+          if(x.qty < 0){
+            x.qty = 1;
+            return;
+          } else {
+            x.qty = x.qty +1 ;
           }
-        } else {
-          return x
         }
+        return x;
       });
     } else {
       console.log(false);
@@ -148,14 +149,73 @@ app.put('/apis/addToCart', function(req,res){
       updatedCart.push({productId : productId , qty : 1});
     }
     console.log("this is updated cart happy? " + updatedCart);
-    // Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
-    //   if(err) throw err;
-    //   res.json(cart);
-    // });
+    Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
+      if(err) throw err;
+      res.json(cart);
+    });
+  });
+})
+
+app.put('/apis/removeFromCart', function(req,res){
+  var userId = req.body.userId;
+  console.log(userId);
+  var productId = req.body.productId;
+  console.log(productId);
+
+  Cart.getCurrentCart(userId , function(error, currentCart){
+    if(error) throw error;
+    console.log(currentCart.cartItems);
+    function lookup( name ) {
+      for(var i = 0, len = currentCart.cartItems.length; i < len; i++) {
+        console.log();
+        if( currentCart.cartItems[ i ].productId === name )
+          return true;
+      }
+      return false;
+    }
+    var updatedCart;
+    console.log(productId,  currentCart.cartItems);
+    if(lookup(productId)) {
+      console.log(true);
+      updatedCart = currentCart.cartItems.map(function(x){
+        if(x.productId == productId){
+          x.qty = x.qty - 1 ;
+        }
+        return x;
+      });
+    } else {
+      console.log(false);
+      updatedCart = currentCart.cartItems;
+      updatedCart.push({productId : productId , qty : 1});
+    }
+    console.log("this is updated cart happy? " + updatedCart);
+    Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
+      if(err) throw err;
+      res.json(cart);
+    });
   });
 })
 
 
+app.put('/apis/removeCart', function(req,res){
+  var userId = req.body.userId;
+  console.log(userId);
+  Cart.getCurrentCart(userId , function(error, currentCart){
+    var updatedCart = [];
+    Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
+      if(err) throw err;
+      res.json(cart);
+    });
+  });
+})
+
+app.put('/apis/getCart', function(req,res){
+  var userId = req.body.userId;
+  console.log(userId);
+  Cart.getCurrentCart(userId , function(error, currentCart){
+    res.json(currentCart);
+  });
+})
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
