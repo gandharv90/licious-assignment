@@ -19,6 +19,12 @@ var Products = module.exports = mongoose.model('Products', productsSchema);
 
 module.exports.getProducts = function (callback , limit) {
   var query = {};
-  var options = {_id : 1};
+  var options = {};
   Products.find(query, options, callback).limit(limit);
+}
+
+module.exports.getProductbyId = function (productId, callback) {
+  var query = {_id : productId};
+  var options = {};
+  Products.findOne(query, options, callback);
 }

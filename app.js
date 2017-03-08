@@ -86,6 +86,16 @@ app.get('/apis/productList',function (req,res) {
   });
 });
 
+app.get('/apis/product/:_id', (req, res) => {
+  var productId = req.params._id;
+	Products.getProductbyId(productId, (err, product) => {
+		if(err){
+			throw err;
+		}
+		res.json(product);
+	});
+});
+
 app.get('/apis/orders',function (req,res) {
   Orders.getOrders( function (err, orderList) {
     if(err) throw err;
@@ -100,7 +110,50 @@ app.get('/apis/cart',function (req,res) {
   });
 });
 
+//cart
+app.put('/apis/addToCart', function(req,res){
+  var userId = req.body.userId;
+  console.log(userId);
+  var productId = req.body.productId;
+  console.log(productId);
 
+  Cart.getCurrentCart(userId , function(error, currentCart){
+    if(error) throw error;
+    console.log(currentCart.cartItems);
+    function lookup( name ) {
+      for(var i = 0, len = currentCart.cartItems.length; i < len; i++) {
+        console.log();
+        if( currentCart.cartItems[ i ].productId === name )
+          return true;
+      }
+      return false;
+    }
+    var updatedCart;
+    console.log(productId,  currentCart.cartItems);
+    if(lookup(productId)) {
+      console.log(true);
+      updatedCart = currentCart.cartItems.map(function(x){
+        if(x.productId == productId){
+          return {
+            productId : x.productId,
+            qty : x.qty + 1
+          }
+        } else {
+          return x
+        }
+      });
+    } else {
+      console.log(false);
+      updatedCart = currentCart.cartItems;
+      updatedCart.push({productId : productId , qty : 1});
+    }
+    console.log("this is updated cart happy? " + updatedCart);
+    // Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
+    //   if(err) throw err;
+    //   res.json(cart);
+    // });
+  });
+})
 
 
 
@@ -148,7 +201,11 @@ app.post('/apis/signup',function (req,res) {
         status : "success",
         user : user
       }
-          console.log("user created");
+      Cart.createCart(user._id, function(error){
+        if(error) throw error;
+        return;
+      });
+      console.log("user created");
       res.json(successresponse);
 		});
 	}
