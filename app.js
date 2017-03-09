@@ -97,6 +97,7 @@ app.get('/apis/product/:_id', (req, res) => {
 });
 
 app.get('/apis/cart',function (req,res) {
+  console.log(req.user.username);
   Cart.getCart( function (err, cart) {
     if(err) throw err;
     res.json(cart);
@@ -105,7 +106,7 @@ app.get('/apis/cart',function (req,res) {
 
 //cart
 app.put('/apis/addToCart', function(req,res){
-  var userId = req.body.userId;
+  var userId = req.user._id;
   console.log(userId);
   var productId = req.body.productId;
   console.log(productId);
@@ -335,7 +336,9 @@ app.get('/apis/logout', function(req, res){
 	res.redirect('/');
 });
 
-
+app.get('/test', function(req,res){
+  console.log(req.user);
+});
 
 app.listen(3000);
 console.log("running!!!");
