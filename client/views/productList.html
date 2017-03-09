@@ -1,7 +1,17 @@
 <div class="ui item" ng-init="getProducts()">
-  <ul>
+  <div class="row">
     <div ng-repeat = "product in products">
-      {{product.name}}
+      <div class="col-sm-3">
+        <div class="card">
+          <img class="card-img-top" ng-src="{{product.imageUrl}}" alt="Card image cap"/>
+          <div class="card-block">
+            <h4 class="card-title">{{product.name}}</h4>
+            <h5>- By {{product.author}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            <a href="#" class="btn btn-primary" ng-click = "addToCart(product._id)">Add to cart - Rs : {{product.price}}</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </ul>
+  </div>
 </div>

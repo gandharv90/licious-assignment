@@ -96,13 +96,6 @@ app.get('/apis/product/:_id', (req, res) => {
 	});
 });
 
-app.get('/apis/orders',function (req,res) {
-  Orders.getOrders( function (err, orderList) {
-    if(err) throw err;
-    res.json(orderList);
-  });
-});
-
 app.get('/apis/cart',function (req,res) {
   Cart.getCart( function (err, cart) {
     if(err) throw err;
@@ -217,6 +210,33 @@ app.put('/apis/getCart', function(req,res){
   });
 })
 
+
+
+app.get('/apis/orders/user/:userID',function (req,res) {
+  var userId = req.params.userId;
+  Orders.getOrders(userId, function (err, orderList) {
+    if(err) throw err;
+    res.json(orderList);
+  });
+});
+
+app.post('/apis/placeNewOrder', function(req, res){
+  var userId = req.body.userId;
+  var cartId = req.body.cart;
+  var address = req.body.address;
+  var phone = req.body.phone;
+
+  var products =   Cart.getCurrentCart(userId , function(error, currentCart){
+    var products = currentCart.cartItems;
+      console.log(products[0]);
+    Orders.placeNewOrder(userId,address, phone, products, function(error, order){
+      if(error) throw error;
+      res.json(order);
+    });
+    });
+
+})
+
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 /////////////////Auth Apis//////////////////////
@@ -229,6 +249,7 @@ app.post('/apis/signup',function (req,res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
+  var phone = req.body.phone
 
 	// Validation
 	req.checkBody('name', 'Name is required').notEmpty();
