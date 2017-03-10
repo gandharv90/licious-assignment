@@ -86,6 +86,16 @@ app.get('/apis/productList',function (req,res) {
   });
 });
 
+app.get('/apis/isUser',function (req,res) {
+  var isUser = req.user ? true : false;
+  var userId = req.user ? req.user._id : false;
+  console.log(req.session.userId);
+  res.json({
+    isUser : isUser,
+    userId : userId
+  });
+});
+
 app.get('/apis/product/:_id', (req, res) => {
   var productId = req.params._id;
 	Products.getProductbyId(productId, (err, product) => {
@@ -97,7 +107,9 @@ app.get('/apis/product/:_id', (req, res) => {
 });
 
 app.get('/apis/cart',function (req,res) {
+  if(req.user){
   console.log(req.user.username);
+}
   Cart.getCart( function (err, cart) {
     if(err) throw err;
     res.json(cart);
@@ -110,6 +122,7 @@ app.put('/apis/addToCart', function(req,res){
   console.log(userId);
   var productId = req.body.productId;
   console.log(productId);
+  var productPrice = req.body.productPrice;
 
   Cart.getCurrentCart(userId , function(error, currentCart){
     if(error) throw error;
@@ -140,7 +153,7 @@ app.put('/apis/addToCart', function(req,res){
     } else {
       console.log(false);
       updatedCart = currentCart.cartItems;
-      updatedCart.push({productId : productId , qty : 1});
+      updatedCart.push({productId : productId , qty : 1, price :productPrice });
     }
     console.log("this is updated cart happy? " + updatedCart);
     Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
@@ -323,7 +336,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 app.post('/apis/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/#!/login',failureFlash: true}),
   function(req, res) {
     res.redirect('/');
   });
