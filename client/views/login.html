@@ -1,21 +1,15 @@
-<br><br><br><br>
-<form action="/apis/login" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
-</form>
+<div class = "ui item">
+  <div class="container">
 
-<br>
-<form action="/apis/logout" method="get">
-    <div>
-        <input type="submit" value="Log out"/>
-    </div>
-</form>
+        <form class="form-signin" action="/apis/login" method="post">
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="inputUsername" class="sr-only">Username</label>
+          <input type="text" name="username" class="form-control" placeholder="username" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    <br>
+    <a href="/#!/signup"><button class="btn btn-lg btn-primary btn-block" style="width: 500px">Register</button></a>
+  </div>
+</div>

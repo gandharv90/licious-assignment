@@ -1,15 +1,17 @@
 <div class="ui item" ng-init="homeInit()">
-  <div class="row">
-    <div ng-repeat = "product in products">
-      <div class="col-sm-3">
-        <div class="card">
-          <img class="card-img-top" ng-src="{{product.imageUrl}}" alt="Card image cap"/>
-          <div class="card-block">
-            <h4 class="card-title">{{product.name}}</h4>
-            <h5>- By {{product.author}}</h5>
-            <p class="card-text">{{product.description}}</p>
-            <a  class="btn btn-primary" ng-click = "addToCart(user.userId, product._id, product.price, product.name)" ng-show = "{{user.isUser}}">Add to cart - Rs : {{product.price}}</a>
-            <a href="/#!/login" class="btn btn-warning" ng-hide = "{{user.isUser}}">Please login to add to cart</a>
+  <div calss = "container-fluid">
+    <div class="row">
+      <div ng-repeat = "product in products">
+        <div class="col-sm-3 product-card">
+          <div class="card">
+            <img class="card-img-top" ng-src="{{product.imageUrl}}" alt="Card image cap"/>
+            <div class="card-block">
+              <h4 class="card-title">{{product.name}}</h4>
+              <h5>- By {{product.author}}</h5>
+              <p class="card-text">{{product.description}}</p>
+              <a  class="btn btn-primary" ng-click = "addToCart(user.userId, product._id, product.price, product.name)" ng-show = "{{user.isUser}}">Add to cart - Rs : {{product.price}}</a>
+              <a href="/#!/login" class="btn btn-warning" ng-hide = "{{user.isUser}}">Please login to add to cart</a>
+            </div>
           </div>
         </div>
       </div>

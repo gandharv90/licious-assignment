@@ -1,12 +1,28 @@
 <div class="ui item" ng-init="cartInit()">
   <div class= "hidden-true">{{user}}
   {{productList}}</div>
-<div ng-repeat = "product in productList">
-  <p>name : {{product.name}}</p>
-  <p>qty : {{product.qty}}</p>
-  <p> total : {{product.qty * product.price}}
-</div>
+  <div ng-repeat = "product in productList">
+    <p>name : {{product.name}}</p>
+    <p>qty : {{product.qty}}</p>
+    <p> total : {{product.qty * product.price}}
+  </div>
 
-<a href="/#!/placeOrder"></a><button>Place Order</button>
+  <div id="modal">
+     <div class="insertscreen">
+         <p class="close">Close this modal</p>
+         <h2> address</h2>
+     </div>
+
+ </div>
+ <div id="showmodal"><a class ="btn btn-primary">Place order</a></div>
+
+ <script>
+ $('#showmodal').click(function(){
+    $('#modal').show();
+});
+$('.close').click(function(){
+    $('#modal').hide();
+});
+ </script>
 
 </div>
