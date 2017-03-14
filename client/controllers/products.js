@@ -20,11 +20,12 @@ function productsController($scope, $rootScope, $http) {
       $scope.getUser();
       $scope.getProducts();
     }
-    $scope.addToCart = function(userId, productId,productPrice){
+    $scope.addToCart = function(userId, productId,productPrice, productName){
       $http.put('/apis/addToCart', {
         userId : userId,
         productId : productId,
-        productPrice : productPrice}
+        productPrice : productPrice,
+        productName : productName}
       ).then(function(){
         alert("added to cart");
       })

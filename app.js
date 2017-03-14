@@ -123,6 +123,9 @@ app.put('/apis/addToCart', function(req,res){
   var productId = req.body.productId;
   console.log(productId);
   var productPrice = req.body.productPrice;
+  console.log(productPrice);
+  var productName = req.body.productName;
+  console.log(productName);
 
   Cart.getCurrentCart(userId , function(error, currentCart){
     if(error) throw error;
@@ -148,12 +151,14 @@ app.put('/apis/addToCart', function(req,res){
             x.qty = x.qty +1 ;
           }
         }
+         x.price = productPrice;
+         x.name = productName;
         return x;
       });
     } else {
       console.log(false);
       updatedCart = currentCart.cartItems;
-      updatedCart.push({productId : productId , qty : 1, price :productPrice });
+      updatedCart.push({productId : productId , qty : 1, price :productPrice, name : productName });
     }
     console.log("this is updated cart happy? " + updatedCart);
     Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
@@ -216,9 +221,9 @@ app.put('/apis/removeCart', function(req,res){
   });
 })
 
-app.put('/apis/getCart', function(req,res){
-  var userId = req.body.userId;
-  console.log(userId);
+app.get('/apis/getCart/:userId', function(req,res){
+  var userId = req.params.userId;
+  console.log(userId + "cart");
   Cart.getCurrentCart(userId , function(error, currentCart){
     res.json(currentCart);
   });
@@ -226,7 +231,7 @@ app.put('/apis/getCart', function(req,res){
 
 
 
-app.get('/apis/orders/user/:userID',function (req,res) {
+app.get('/apis/orders/user/:userId',function (req,res) {
   var userId = req.params.userId;
   Orders.getOrders(userId, function (err, orderList) {
     if(err) throw err;

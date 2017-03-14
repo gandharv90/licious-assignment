@@ -1,1 +1,12 @@
-hello cart
+<div class="ui item" ng-init="cartInit()">
+  <div class= "hidden-true">{{user}}
+  {{productList}}</div>
+<div ng-repeat = "product in productList">
+  <p>name : {{product.name}}</p>
+  <p>qty : {{product.qty}}</p>
+  <p> total : {{product.qty * product.price}}
+</div>
+
+<a href="/#!/placeOrder"></a><button>Place Order</button>
+
+</div>

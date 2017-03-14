@@ -8,7 +8,7 @@
             <h4 class="card-title">{{product.name}}</h4>
             <h5>- By {{product.author}}</h5>
             <p class="card-text">{{product.description}}</p>
-            <a  class="btn btn-primary" ng-click = "addToCart(user.userId, product._id, product.price)" ng-show = "{{user.isUser}}">Add to cart - Rs : {{product.price}}</a>
+            <a  class="btn btn-primary" ng-click = "addToCart(user.userId, product._id, product.price, product.name)" ng-show = "{{user.isUser}}">Add to cart - Rs : {{product.price}}</a>
             <a href="/#!/login" class="btn btn-warning" ng-hide = "{{user.isUser}}">Please login to add to cart</a>
           </div>
         </div>

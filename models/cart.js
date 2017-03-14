@@ -23,7 +23,9 @@ var cartSchema = mongoose.Schema({
       type : Number,
       required : true,
       min : 0
-    }
+    },
+    price : Number,
+    name : String
   }]
 });
 
@@ -36,10 +38,10 @@ module.exports.createCart = function (newUser ,callback) {
   Cart.create({userId : newUser},callback);
 }
 
-module.exports.getCart = function (callback ,limit) {
-  console.log("working?");
-  Cart.find(callback).limit(limit);
-}
+// module.exports.getCart = function (callback ,limit) {
+//   console.log("working?");
+//   Cart.find(callback).limit(limit);
+// }
 
 module.exports.getCurrentCart = function(userId, callback){
   Cart.findOne({userId : userId},{_id : 0, cartItems : 1}, callback);

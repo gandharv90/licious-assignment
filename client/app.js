@@ -16,4 +16,8 @@ app.config(function($routeProvider) {
     .when("/login", {
         templateUrl : "views/login.html"
     })
+    .when("/cart", {
+      controller : 'cart',
+        templateUrl : "views/cart.html"
+    })
 });
