@@ -1,10 +1,10 @@
 app.controller("products", productsController);
 
-function productsController($scope, $http) {
+function productsController($scope, $rootScope, $http) {
     console.log("ran!!");
     $scope.getUser = function(){
       $http.get('/apis/isUser').then(function(response){
-        $scope.user = response.data;
+        $rootScope.user = response.data;
         console.log(response.data);
       });
     }

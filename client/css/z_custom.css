@@ -36,3 +36,16 @@ img {
   height : 200px;
   align-self: center;
 }
+
+.hidden-true {
+  visibility: hidden;
+  max-width: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.hidden-false {
+  visibility: visible;
+
+
+}

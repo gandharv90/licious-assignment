@@ -6,7 +6,7 @@ app.config(function($routeProvider) {
         templateUrl : "views/productList.html"
     })
     .when("/signup", {
-        controller : 'accounts',
+        controller : 'userAuth',
         templateUrl : "views/signup.html"
     })
     .when("/orders", {

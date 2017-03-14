@@ -272,6 +272,7 @@ app.post('/apis/signup',function (req,res) {
 	req.checkBody('username', 'Username is required').notEmpty();
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('phone', 'Phone is required').notEmpty();
 
 	var errors = req.validationErrors();
 
@@ -338,15 +339,12 @@ passport.deserializeUser(function(id, done) {
 app.post('/apis/login',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/#!/login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/#!/');
   });
 
 app.get('/apis/logout', function(req, res){
 	req.logout();
-
-	req.flash('success_msg', 'You are logged out');
-
-	res.redirect('/');
+	res.redirect('/#!/');
 });
 
 app.get('/test', function(req,res){
