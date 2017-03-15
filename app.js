@@ -146,13 +146,16 @@ app.put('/apis/addToCart', function(req,res){
         if(x.productId == productId){
           if(x.qty < 0){
             x.qty = 1;
+            x.price = productPrice;
+            x.name = productName;
             return;
           } else {
             x.qty = x.qty +1 ;
+            x.price = productPrice;
+            x.name = productName;
           }
         }
-         x.price = productPrice;
-         x.name = productName;
+
         return x;
       });
     } else {
@@ -191,14 +194,14 @@ app.put('/apis/removeFromCart', function(req,res){
       console.log(true);
       updatedCart = currentCart.cartItems.map(function(x){
         if(x.productId == productId){
-          x.qty = x.qty - 1 ;
+          x.qty = 0;
         }
         return x;
       });
     } else {
       console.log(false);
       updatedCart = currentCart.cartItems;
-      updatedCart.push({productId : productId , qty : 1});
+      updatedCart.push({productId : productId , qty : 1}); //needed for a bug fix
     }
     console.log("this is updated cart happy? " + updatedCart);
     Cart.updateCart(userId, updatedCart, {}, function (err, cart) {
