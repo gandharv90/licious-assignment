@@ -1,1 +1,33 @@
-<br><br><br><br><br><br><br><br><br><br><br>hello :)
+<div class="ui item" ng-init="getUserOrders()">
+  <div class="panel panel-default" ng-repeat = "order in orderList">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+      <div>
+        <strong>Order Date : </strong>{{order.createdAt | date:'EEEE MM/dd/yyyy @ h:mma' : '+0530'}}
+      </div>
+      <div style="float : rigth;">
+        <strong>Order amount : </strong> Rs. {{order.orderAmount}}
+      </div>
+    </div>
+    <div class="well" style="margin-bottom: 0px;padding-bottom: 0px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Units</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat = "product in order.products" ng-if = "product.qty > 0">
+              <td>{{product.name}}</td>
+              <td>{{product.qty}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.price * product.qty}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

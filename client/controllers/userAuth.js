@@ -16,6 +16,7 @@ function userAuthController ($scope, $http, $location){
         $scope.errors = response.data.errors;
         $location.path("/signup");
       } else if(response.data.status == "success") {
+        alert("Account registered please login to continue");
         $location.path("/login");
       } else {
         $location.path("/signup");

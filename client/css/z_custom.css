@@ -144,5 +144,11 @@ color: #fff;
   margin-left: 150px;
 }
 
+.login-form-custom{
+  width : 300px;
+}
 
-/*place order form*/
+.login-form-input{
+  margin-bottom: 5px;
+  height : 40px;
+}

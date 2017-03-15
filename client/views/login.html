@@ -1,15 +1,16 @@
 <div class = "ui item">
   <div class="container">
 
-        <form class="form-signin" action="/apis/login" method="post">
+        <form class="form-signin login-form-custom" action="/apis/login" method="post">
           <h2 class="form-signin-heading">Please sign in</h2>
           <label for="inputUsername" class="sr-only">Username</label>
-          <input type="text" name="username" class="form-control" placeholder="username" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" name="password" class="form-control" placeholder="Password" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <input type="text" name="username" class="form-control login-form-input" placeholder="username" required autofocus>
+          <label for="inputPassword" class="sr-only ">Password</label>
+          <input type="password" name="password" class="form-control login-form-input" placeholder="Password" required>
+          <button class="btn btn-lg btn-primary btn-block login-form-input" type="submit">Sign in</button>
         </form>
     <br>
-    <a href="/#!/signup"><button class="btn btn-lg btn-primary btn-block" style="width: 500px">Register</button></a>
+    <h4 style="margin-bottom: 10px;margin-left: 100px;"> Not a user? </h4>
+    <a href="/#!/signup"><button class="btn btn-lg btn-primary btn-block" style="width: 300px">Register</button></a>
   </div>
 </div>
