@@ -69,12 +69,12 @@ html, body, #fullheight {
 }
 #modal .insertscreen{
     position:relative;
-    left: 25%;
-    top: 25%;
+    left: 20%;
+    top: 10%;
 
     border:2px solid #0094ff;
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 80%;
 
     -webkit-border-top-left-radius:6px;
     -webkit-border-top-right-radius:6px;
@@ -91,6 +91,16 @@ html, body, #fullheight {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#F2F2F2,GradientType=0);
 }
 
+.address-form{
+
+
+  width: 500px;
+  height: auto;
+}
+
+.form-row{
+  margin-left: 10%;
+}
 #showmodal {
   cursor: pointer;
 }

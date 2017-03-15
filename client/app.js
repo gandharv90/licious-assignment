@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
     })
     .when("/orders", {
         controller : 'orders',
-        templateUrl : "views/placeOrder.html"
+        templateUrl : "views/orderHistory.html"
     })
     .when("/login", {
         templateUrl : "views/login.html"

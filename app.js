@@ -212,7 +212,7 @@ app.put('/apis/removeFromCart', function(req,res){
 })
 
 
-app.put('/apis/removeCart', function(req,res){
+app.put('/apis/deleteCart', function(req,res){
   var userId = req.body.userId;
   console.log(userId);
   Cart.getCurrentCart(userId , function(error, currentCart){
@@ -244,19 +244,16 @@ app.get('/apis/orders/user/:userId',function (req,res) {
 
 app.post('/apis/placeNewOrder', function(req, res){
   var userId = req.body.userId;
-  var cartId = req.body.cart;
   var address = req.body.address;
+  var city = req.body.city;
+  var state = req.body.state
   var phone = req.body.phone;
+  var products = req.body.products;
+  var orderAmount = req.body.orderAmount;
 
-  var products =   Cart.getCurrentCart(userId , function(error, currentCart){
-    var products = currentCart.cartItems;
-      console.log(products[0]);
-    Orders.placeNewOrder(userId,address, phone, products, function(error, order){
-      if(error) throw error;
-      res.json(order);
-    });
-    });
-
+  Orders.placeNewOrder(userId,address, state , city, phone, products,orderAmount, function(order){
+    res.json(order);
+  });
 })
 
 ////////////////////////////////////////////////

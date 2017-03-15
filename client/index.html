@@ -13,6 +13,7 @@
     <script src="/app.js"></script>
     <script src="/controllers/products.js"></script>
     <script src="/controllers/cart.js"></script>
+    <script src="/controllers/orders.js"></script>
     <script src="/controllers/userAuth.js"></script>
     <script src="/bower_components/angular-flash/dist/angular-flash.js" charset="utf-8"></script>
   </head>
@@ -32,7 +33,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="/apis/logout">Logout</a></li>
-                <li><a href="/#!/orderHistory">Order history</a></li>
+                <li><a href="/#!/orders">Order history</a></li>
               </ul>
             </li>
             <li><a href="/#!/cart" class = "hidden-{{!user.isUser}}">Cart</a></li>
