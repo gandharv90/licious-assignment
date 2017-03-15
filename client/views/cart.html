@@ -1,1 +1,138 @@
-hello cart
+<div class="ui item" ng-init="cartInit()">
+
+  <div id="modal" style="z-index: 10">
+     <div class="insertscreen">
+       <button type="button" class="close-form btn btn-success" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <div class="row">
+            <div class="col-md-4 col-md-offset-4" style="margin-left:150px;">
+              <form class="form-horizontal address-form" role="form">
+                <fieldset>
+
+                  <!-- Form Name -->
+                  <legend>Address Details</legend>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Address</label>
+                    <div class="col-sm-10">
+                      <textarea placeholder="Address" class="form-control" rows="3"  ng-model="address" required ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">City</label>
+                    <div class="col-sm-10">
+                      <input type="text" placeholder="City"  ng-model='city' class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Phone</label>
+                    <div class="col-sm-10">
+                      <input type="text" placeholder="Phone"  ng-model='phone' class="form-control" required>
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">State</label>
+                    <div class="col-sm-4">
+                      <input type="text" placeholder="State" class="form-control"  ng-model='state' required>
+                    </div>
+
+                    <label class="col-sm-2 control-label" for="textinput"  >Postcode</label>
+                    <div class="col-sm-4">
+                      <input type="text" placeholder="Post Code" class="form-control" ng-model='pincode' required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="pull-right">
+                        <button type="submit" class="close-form btn btn-default ">Cancel</button>
+                        <button type="submit" class="btn btn-primary" ng-click='placeOrder(productList, cartTotal)'>Place Order</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </fieldset>
+              </form>
+            </div><!-- /.col-lg-12 -->
+          </div><!-- /.row -->
+     </div>
+
+ </div>
+ <div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = "product in productList" ng-if ="product.qty > 0">
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">{{product.name}}</a></h4>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="{{product.qty}}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>Rs.{{product.price}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center" ><div id ="totalprice"><strong>{{product.price * product.qty}}</strong></div></td>
+                        <td class="col-sm-1 col-md-1">
+                        <button type="button" class="btn btn-danger" ng-click = "removeFromCart(user.userId, product.productId)">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right" ><h3><strong> Rs. {{cartTotal}}</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <button type="button" class="btn btn-danger" ng-click="deleteCart(user.userId)">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Delete cart
+                          </button>
+                        </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                        <button type="button" class="btn btn-default" onclick="location.href='/#!/';">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </button></td>
+                        <td>
+                        <button type="button" class="btn btn-success" id= 'showmodal'>
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ <script>
+ $('#showmodal').click(function(){
+    $('#modal').show();
+});
+$('.close-form').click(function(){
+    $('#modal').hide();
+});
+
+ </script>
+
+</div>
