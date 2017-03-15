@@ -32,9 +32,9 @@ var ordersSchema = mongoose.Schema({
 
 var Orders = module.exports = mongoose.model('Orders', ordersSchema);
 
-// module.exports.getOrders = function (callback ,userId, limit) {
-//   Orders.find(callback).limit(limit);
-// }
+module.exports.getOrders = function (userId, callback ,limit) {
+  Orders.find({userId : userId},callback).limit(limit);
+}
 
 module.exports.placeNewOrder = (userId,address,state, city, phone, products, orderAmount, callback) => {
   console.log(products + " from orders.js");

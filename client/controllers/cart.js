@@ -3,13 +3,13 @@ app.controller("cart", cartController);
 function cartController($scope, $rootScope, $http, $location, $route) {
     console.log("ran!!");
     $scope.cartInit = function(){
-      $scope.getUser();
+      $scope.getUserCart();
       // $scope.getCart();
       // $scope.getTotal();
       // $scope.getProducts();
       console.log("ran?");
     }
-    $scope.getUser = function(){
+    $scope.getUserCart = function(){
       console.log("ran here?");
       $http.get('/apis/isUser').then(function(response){
         console.log("get user");
